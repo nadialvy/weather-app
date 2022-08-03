@@ -1,0 +1,163 @@
+{
+  "data": {
+    "cities": [
+      {
+        "id": 28,
+        "region_id": 10,
+        "slug": "aceh-barat",
+        "name": "Aceh Barat",
+        "code": null,
+        "latitude": "4.4542745",
+        "longitude": "96.1526985",
+        "location": "4.4542745,96.1526985",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 303,
+        "region_id": 10,
+        "slug": "aceh-barat-daya",
+        "name": "Aceh Barat Daya",
+        "code": null,
+        "latitude": "3.7963426",
+        "longitude": "97.0068393",
+        "location": "3.7963426,97.0068393",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 362,
+        "region_id": 10,
+        "slug": "aceh-besar",
+        "name": "Aceh Besar",
+        "code": null,
+        "latitude": "5.4107975",
+        "longitude": "95.5197394",
+        "location": "5.4107975,95.5197394",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 238,
+        "region_id": 10,
+        "slug": "aceh-jaya",
+        "name": "Aceh Jaya",
+        "code": null,
+        "latitude": "4.7873684",
+        "longitude": "95.6457951",
+        "location": "4.7873684,95.6457951",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 188,
+        "region_id": 10,
+        "slug": "aceh-selatan",
+        "name": "Aceh Selatan",
+        "code": null,
+        "latitude": "3.3115056",
+        "longitude": "97.3516558",
+        "location": "3.3115056,97.3516558",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 334,
+        "region_id": 10,
+        "slug": "aceh-singkil",
+        "name": "Aceh Singkil",
+        "code": null,
+        "latitude": "2.5157011",
+        "longitude": "97.8721600",
+        "location": "2.5157011,97.8721600",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 246,
+        "region_id": 10,
+        "slug": "aceh-tamiang",
+        "name": "Aceh Tamiang",
+        "code": null,
+        "latitude": "4.2749055",
+        "longitude": "97.8721600",
+        "location": "4.2749055,97.8721600",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 385,
+        "region_id": 10,
+        "slug": "aceh-tengah",
+        "name": "Aceh Tengah",
+        "code": null,
+        "latitude": "4.5293368",
+        "longitude": "96.9209135",
+        "location": "4.5293368,96.9209135",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 312,
+        "region_id": 10,
+        "slug": "aceh-tenggara",
+        "name": "Aceh Tenggara",
+        "code": null,
+        "latitude": "3.3088666",
+        "longitude": "97.6982272",
+        "location": "3.3088666,97.6982272",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 339,
+        "region_id": 10,
+        "slug": "aceh-timur",
+        "name": "Aceh Timur",
+        "code": null,
+        "latitude": "4.6052068",
+        "longitude": "97.5247243",
+        "location": "4.6052068,97.5247243",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 310,
+        "region_id": 10,
+        "slug": "aceh-utara",
+        "name": "Aceh Utara",
+        "code": null,
+        "latitude": "4.9795719",
+        "longitude": "97.1359377",
+        "location": "4.9795719,97.1359377",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 224,
+        "region_id": 26,
+        "slug": "agam",
+        "name": "Agam",
+        "code": null,
+        "latitude": "-0.2209392",
+        "longitude": "100.1703257",
+        "location": "-0.2209392,100.1703257",
+        "order": 0,
+        "active": true,
+        "status": null
+      }
+      
+    ]
+  }
+}
