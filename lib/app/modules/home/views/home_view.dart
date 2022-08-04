@@ -1,17 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:weather_app/app/constant/colors.dart';
-import 'package:weather_app/app/entities/cities_model.dart';
+import 'package:weather_app/app/modules/detail_info/controllers/detail_info_controller.dart';
+import 'package:weather_app/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
-import 'package:dio/dio.dart';
 
 class HomeView extends GetView<HomeController> {
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,29 +60,43 @@ class HomeView extends GetView<HomeController> {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: citiesOnly.length,
                 itemBuilder: (context, index){
+
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '${citiesOnly[index]['name']}',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed(
+                          Routes.DETAIL_INFO,
+                          arguments: citiesOnly[index],
+                        );
+
+                        final controller = Get.lazyPut<DetailInfoController>(
+                                            () => DetailInfoController(citiesOnly[index]),
+                                          );
+                        Get.find<DetailInfoController>();
+                      },
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${citiesOnly[index]['name']}',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold
+                                ),
                               ),
-                            ),
-                            Text(
-                              'See Detail Information >>',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: mainBlue
+                              Text(
+                                'See Detail Information >>',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: mainBlue
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

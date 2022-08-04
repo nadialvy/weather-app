@@ -14,7 +14,7 @@ void main() {
       ),
       debugShowCheckedModeBanner: false,
       title: "Weather App",
-      initialRoute: AppPages.INITIAL,
+      initialRoute: Routes.HOME,
       getPages: AppPages.routes,
     ),
   );
