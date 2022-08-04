@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:weather_app/app/constant/colors.dart';
-import 'package:weather_icons/weather_icons.dart';
+import 'package:intl/intl.dart';
+import "string_extension.dart";
 
 import '../controllers/detail_info_controller.dart';
 
@@ -16,14 +16,14 @@ class DetailInfoView extends GetView<DetailInfoController> {
     return Scaffold(
       body: Center(
         child: IconButton(
-          icon: Icon(Icons.replay_outlined),
+          icon: const Icon(Icons.replay_outlined),
           onPressed: () => Navigator.pop(context),
         ),
       ),
     );
   } else {
     return Scaffold(
-      backgroundColor: lightesBlue,
+      backgroundColor: mainBlue,
       body: StreamBuilder<Map<String, dynamic>>(
         stream: controller.getWeather(),
         builder: (context, snapshot) {
@@ -45,53 +45,126 @@ class DetailInfoView extends GetView<DetailInfoController> {
                     children: [
                       IconButton(
                         onPressed: () => Get.back(),
-                        icon: const Icon(Icons.arrow_back_ios)
+                        icon: const Icon(Icons.arrow_back_ios),
+                        color: Colors.white
                       ),
-                      Text(
-                        "${cityData!['name']}",
-                        style: const TextStyle(
+                      const Text(
+                        "Today's Weather Forecast",
+                        style: TextStyle(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white
                         ),
                       ),
-                      IconButton(
-                        onPressed: () => controller.getWeather(),
-                        icon: const Icon(Icons.calendar_month)
-                      ),
+                      Container(),
                     ],
                   ),
                   const SizedBox(height: 50,),
                   Container(
-                    width: 250,
-                    height: 250,
+                    width: Get.width,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                        image: NetworkImage("https://openweathermap.org/img/wn/${dataWeather['current']['weather'][0]['icon']}@2x.png"),
-                        fit: BoxFit.fill,
+                      color: lightesBlue
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(Icons.location_on_rounded),
+                                  const SizedBox(width: 10,),
+                                  Text(
+                                    "${cityData!['name']}",
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(Icons.calendar_today),
+                                  const SizedBox(width: 10,),
+                                  Text(
+                                    DateFormat.yMMMEd().format(DateTime.now()),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+
+                                ],
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 20,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Image.network(
+                                "https://openweathermap.org/img/wn/${dataWeather['current']['weather'][0]['icon']}@2x.png"
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(right: 10),
+                                child: Text(
+                                  '27°',
+                                  style: TextStyle(
+                                    fontSize: 60,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '${dataWeather['current']['weather'][0]['main']}',
+                                style: const TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
+                              Text(
+                                'Humidity : ${dataWeather['current']['humidity']}',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '${dataWeather['current']['weather'][0]['description']}'.toTitleCase(),
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
+                              Text(
+                                'Clouds : ${dataWeather['current']['clouds']}',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
                   const SizedBox(height: 50,),
-                  Text(
-                    '${dataWeather['current']['weather'][0]['main']}',
-                    style: const TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
-                  Text(
-                    '${dataWeather['current']['humidity']}',
-                    style: const TextStyle(
-                      fontSize: 80,
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                  Text(
-                    '${dataWeather['current']['weather'][0]['description']}', //desc
-                    style: const TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -100,17 +173,5 @@ class DetailInfoView extends GetView<DetailInfoController> {
       )
     );
   }
-    Get.back();
-    return Scaffold(
-      body: Container(
-        child: Center(
-          child: IconButton(
-            icon: Icon(Icons.replay_outlined),
-            onPressed: () => Get.back(),
-          ),
-        ),
-      ),
-    );
-
   }
 }

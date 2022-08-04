@@ -80,58 +80,6 @@
         "status": null
       },
       {
-        "id": 246,
-        "region_id": 10,
-        "slug": "aceh-tamiang",
-        "name": "Aceh Tamiang",
-        "code": null,
-        "latitude": "4.2749055",
-        "longitude": "97.8721600",
-        "location": "4.2749055,97.8721600",
-        "order": 0,
-        "active": true,
-        "status": null
-      },
-      {
-        "id": 385,
-        "region_id": 10,
-        "slug": "aceh-tengah",
-        "name": "Aceh Tengah",
-        "code": null,
-        "latitude": "4.5293368",
-        "longitude": "96.9209135",
-        "location": "4.5293368,96.9209135",
-        "order": 0,
-        "active": true,
-        "status": null
-      },
-      {
-        "id": 312,
-        "region_id": 10,
-        "slug": "aceh-tenggara",
-        "name": "Aceh Tenggara",
-        "code": null,
-        "latitude": "3.3088666",
-        "longitude": "97.6982272",
-        "location": "3.3088666,97.6982272",
-        "order": 0,
-        "active": true,
-        "status": null
-      },
-      {
-        "id": 339,
-        "region_id": 10,
-        "slug": "aceh-timur",
-        "name": "Aceh Timur",
-        "code": null,
-        "latitude": "4.6052068",
-        "longitude": "97.5247243",
-        "location": "4.6052068,97.5247243",
-        "order": 0,
-        "active": true,
-        "status": null
-      },
-      {
         "id": 310,
         "region_id": 10,
         "slug": "aceh-utara",

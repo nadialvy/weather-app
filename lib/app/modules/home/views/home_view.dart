@@ -15,7 +15,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lightesBlue,
+      backgroundColor: mainBlue,
       body: ListView(
         children: [
           Padding(
@@ -24,18 +24,18 @@ class HomeView extends GetView<HomeController> {
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: mainBlue
+                    color: lightesBlue
                   )
                 ),
                 focusColor: mainBlue,
                 prefixIcon: Icon(
                   Icons.search,
-                  color: mainBlue,
+                  color: Colors.white,
                 ),
                 label: Text(
                   'Search...',
                   style: TextStyle(
-                    color: mainBlue
+                    color: Colors.white
                   ),
                 ),
                 border: OutlineInputBorder(),
@@ -76,6 +76,7 @@ class HomeView extends GetView<HomeController> {
                         Get.find<DetailInfoController>();
                       },
                       child: Card(
+                        color: lightesBlue,
                         child: Padding(
                           padding: const EdgeInsets.all(20),
                           child: Column(
@@ -84,6 +85,7 @@ class HomeView extends GetView<HomeController> {
                               Text(
                                 '${citiesOnly[index]['name']}',
                                 style: TextStyle(
+                                  color: Colors.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold
                                 ),
