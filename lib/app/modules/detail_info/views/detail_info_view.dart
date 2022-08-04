@@ -54,9 +54,10 @@ class DetailInfoView extends GetView<DetailInfoController> {
                           fontWeight: FontWeight.bold
                         ),
                       ),
-                      const Icon(Icons.calendar_today_outlined)
-                      // SizedBox(width: 1,),
-                      // Icon(Icons.calendar_month_outlined),
+                      IconButton(
+                        onPressed: () => controller.getWeather(),
+                        icon: const Icon(Icons.calendar_month)
+                      ),
                     ],
                   ),
                   const SizedBox(height: 50,),
@@ -64,8 +65,11 @@ class DetailInfoView extends GetView<DetailInfoController> {
                     width: 250,
                     height: 250,
                     decoration: BoxDecoration(
-                      color: mainBlue,
                       borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: NetworkImage("https://openweathermap.org/img/wn/${dataWeather['current']['weather'][0]['icon']}@2x.png"),
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 50,),

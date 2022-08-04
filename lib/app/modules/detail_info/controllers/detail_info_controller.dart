@@ -12,7 +12,9 @@ class DetailInfoController extends GetxController {
     super.onInit();
   }
 
+
   Stream<Map<String, dynamic>> getWeather() async* {
+    // print(cityData);
     var dataLatitude = cityData['latitude'];
     var dataLongitude = cityData['longitude'];
 
