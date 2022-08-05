@@ -37,15 +37,14 @@ class DetailInfoView extends GetView<DetailInfoController> {
           }
 
           Map<dynamic, dynamic> dataWeather = snapshot.data!;
-          var celcius = dataWeather['current']['temp']-273;
-
-          var timeStampSunrise = dataWeather['current']['sunrise'];
-          var sunrise = DateFormat.jm().format(DateTime.fromMillisecondsSinceEpoch(timeStampSunrise * 1000));
-          
-          var timeStampSunset = dataWeather['current']['sunset'];
-          var sunset = DateFormat.jm().format(DateTime.fromMillisecondsSinceEpoch(timeStampSunset * 1000));
           
           if(dataWeather["message"] == null){
+            var celcius = dataWeather['current']['temp']-273;
+            var timeStampSunrise = dataWeather['current']['sunrise'];
+            var sunrise = DateFormat.jm().format(DateTime.fromMillisecondsSinceEpoch(timeStampSunrise * 1000));
+            var timeStampSunset = dataWeather['current']['sunset'];
+            var sunset = DateFormat.jm().format(DateTime.fromMillisecondsSinceEpoch(timeStampSunset * 1000));
+            
             return SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.width40),
@@ -80,25 +79,25 @@ class DetailInfoView extends GetView<DetailInfoController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Icon(
-                                  Icons.location_on_rounded,
-                                  color: mainText,
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on_rounded,
+                                      color: mainText,
+                                    ),
+                                    SizedBox(width: Dimensions.width10,),
+                                    Text(
+                                      "${cityData!['name']}",
+                                      style: TextStyle(
+                                        fontSize: Dimensions.font20,
+                                        fontWeight: FontWeight.w600,
+                                        color: mainText
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(width: Dimensions.width10,),
-                                Text(
-                                  "${cityData!['name']}",
-                                  style: TextStyle(
-                                    fontSize: Dimensions.font20,
-                                    fontWeight: FontWeight.w600,
-                                    color: mainText
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(width: Dimensions.width40,),
                                 Text(
                                   '${DateFormat.EEEE().format(DateTime.now())}, ${DateFormat.j().format(DateTime.now())}',
                                   style: TextStyle(
@@ -177,7 +176,7 @@ class DetailInfoView extends GetView<DetailInfoController> {
                         ],
                       ),
                     ),
-                    SizedBox(height: Dimensions.height50,),
+                    SizedBox(height: Dimensions.height20,),
                     Container(
                       width: Get.width,
                       decoration: BoxDecoration(
