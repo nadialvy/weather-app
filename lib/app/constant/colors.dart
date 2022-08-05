@@ -15,3 +15,5 @@ const primaryBlue = Color(0xFF102A4F);
 const mediumBlue = Color(0xFF2A4267);
 const mediumBlueAlpha = Color.fromARGB(62, 57, 83, 122);
 const lightBlue2 = Color(0xFF8CB2FB);
+const lightYellow = Color.fromARGB(255, 251, 241, 211);
+const lightBlue3 = Color.fromARGB(255, 219, 232, 255);

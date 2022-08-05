@@ -37,6 +37,14 @@ class DetailInfoView extends GetView<DetailInfoController> {
           }
 
           Map<dynamic, dynamic> dataWeather = snapshot.data!;
+          var celcius = dataWeather['current']['temp']-273;
+
+          var timeStampSunrise = dataWeather['current']['sunrise'];
+          var sunrise = DateFormat.jm().format(DateTime.fromMillisecondsSinceEpoch(timeStampSunrise * 1000));
+          
+          var timeStampSunset = dataWeather['current']['sunset'];
+          var sunset = DateFormat.jm().format(DateTime.fromMillisecondsSinceEpoch(timeStampSunset * 1000));
+          
           if(dataWeather["message"] == null){
             return SingleChildScrollView(
               child: Container(
@@ -71,21 +79,35 @@ class DetailInfoView extends GetView<DetailInfoController> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "${cityData!['name']}",
-                                style: TextStyle(
-                                  fontSize: Dimensions.font20,
-                                  fontWeight: FontWeight.w600,
-                                  color: mainText
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.location_on_rounded,
+                                  color: mainText,
                                 ),
+                                SizedBox(width: Dimensions.width10,),
+                                Text(
+                                  "${cityData!['name']}",
+                                  style: TextStyle(
+                                    fontSize: Dimensions.font20,
+                                    fontWeight: FontWeight.w600,
+                                    color: mainText
+                                  ),
+                                ),
+                              ],
                             ),
-                            Text(
-                              '${DateFormat.EEEE().format(DateTime.now())}, ${DateFormat.j().format(DateTime.now())}',
-                              style: TextStyle(
-                                fontSize: Dimensions.font16,
-                                fontWeight: FontWeight.w400,
-                                color: subText
-                              ),
+                            Row(
+                              children: [
+                                SizedBox(width: Dimensions.width40,),
+                                Text(
+                                  '${DateFormat.EEEE().format(DateTime.now())}, ${DateFormat.j().format(DateTime.now())}',
+                                  style: TextStyle(
+                                    fontSize: Dimensions.font16,
+                                    fontWeight: FontWeight.w400,
+                                    color: subText
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -106,13 +128,35 @@ class DetailInfoView extends GetView<DetailInfoController> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          Text(
-                            '27° C',
-                            style: TextStyle(
-                              fontSize: Dimensions.font60,
-                              fontWeight: FontWeight.w500,
-                              color: mainText
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${celcius.toInt()}',
+                                style: TextStyle(
+                                  fontSize: Dimensions.font60,
+                                  fontWeight: FontWeight.w500,
+                                  color: mainText
+                                ),
+                              ),
+                              const Text(
+                                '°',
+                                style: TextStyle(
+                                  fontSize: 36,
+                                  fontWeight: FontWeight.w400,
+                                  color: mainText
+                                ),
+                              ),
+                              Text(
+                                'C',
+                                style: TextStyle(
+                                  fontSize: Dimensions.font60,
+                                  fontWeight: FontWeight.w400,
+                                  color: mainText
+                                ),
+                              ),
+                            ],
                           ),
                           Text(
                             '${dataWeather['current']['weather'][0]['main']}',
@@ -217,6 +261,92 @@ class DetailInfoView extends GetView<DetailInfoController> {
                               ],
                             ),
                           ],
+                          
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: Dimensions.height20,),
+                    Text(
+                      'Sunrise & Sunset',
+                       style: TextStyle(
+                        fontSize: Dimensions.font18,
+                        color: mainText,
+                        fontWeight: FontWeight.w500
+                      ),
+                    ),
+                    SizedBox(height: Dimensions.height10,),
+                    Container(
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.radius10),
+                        color: lightYellow,
+                        border: Border.all(color: mediumBlueAlpha)
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: Dimensions.width10, horizontal: Dimensions.width20),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.wb_sunny),
+                            SizedBox(width: Dimensions.width20,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Sunrise',
+                                  style: TextStyle(
+                                    fontSize: Dimensions.font14,
+                                    color: subText,
+                                  ),
+                                ),
+                                Text(
+                                  sunrise,
+                                  style: TextStyle(
+                                    fontSize: Dimensions.font22,
+                                    color: mainText,
+                                    fontWeight: FontWeight.w500
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: Dimensions.height10,),
+                    Container(
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.radius10),
+                        color: lightBlue3,
+                        border: Border.all(color: mediumBlueAlpha)
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: Dimensions.width10, horizontal: Dimensions.width20),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.sunny_snowing),
+                            SizedBox(width: Dimensions.width20,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Sunset',
+                                  style: TextStyle(
+                                    fontSize: Dimensions.font14,
+                                    color: subText,
+                                  ),
+                                ),
+                                Text(
+                                  sunset,
+                                  style: TextStyle(
+                                    fontSize: Dimensions.font22,
+                                    color: mainText,
+                                    fontWeight: FontWeight.w500
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -262,13 +392,13 @@ class DetailInfoView extends GetView<DetailInfoController> {
                       child: Column(
                         children: [
                           Image.asset(
-                            'assets/404.jpg'
+                            'assets/nodata.jpg'
                           ),
-                          const Text(
+                          Text(
                             "We're sorry :(",
                             style: TextStyle(
-                              color: Color.fromARGB(255, 141, 18, 9),
-                              fontSize: 20,
+                              color: mainText,
+                              fontSize: Dimensions.font20,
                               fontWeight: FontWeight.w600
                             ),
                           ),

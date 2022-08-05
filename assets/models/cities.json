@@ -146,6 +146,19 @@
         "status": null
       },
       {
+        "id": 32,
+        "region_id": 2,
+        "slug": "blitar",
+        "name": "Blitar",
+        "code": null,
+        "latitude": "-8.0728800",
+        "longitude": "112.1664960",
+        "location": "-8.0728800,112.1664960",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
         "id": 3,
         "region_id": 1,
         "slug": "jayapura",
@@ -170,8 +183,46 @@
         "order": 0,
         "active": true,
         "status": null
+      },
+      {
+        "id": 98,
+        "region_id": 2,
+        "slug": "kediri",
+        "name": "Kediri",
+        "code": null,
+        "latitude": "-7.8168950",
+        "longitude": "112.0113980",
+        "location": "-7.8168950,112.0113980",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 132,
+        "region_id": 11,
+        "slug": "makassar",
+        "name": "Makassar",
+        "code": null,
+        "latitude": "-5.1398000",
+        "longitude": "119.4305000",
+        "location": "-5.1398000,119.4305000",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 37,
+        "region_id": 2,
+        "slug": "malang",
+        "name": "Malang",
+        "code": null,
+        "latitude": "-7.9818940",
+        "longitude": "112.6265030",
+        "location": "-7.9818940,112.6265030",
+        "order": 0,
+        "active": true,
+        "status": null
       }
-      
     ]
   }
 }
