@@ -12,30 +12,77 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mainBlue,
+      backgroundColor: Colors.white,
       body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-            child: TextField(
-              onChanged: (value) => controller.filterCity(value),
-              decoration: const InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: lightesBlue
-                  )
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Hi Ray!',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        Text(
+                          "Let's explore what's going on today!"
+                        ),
+                      ],
+                    ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        'assets/profile.jpg',
+                        height: 53,
+                      )
+                    )
+                  ],
                 ),
-                focusColor: mainBlue,
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: Colors.white,
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        onChanged: (value) => controller.filterCity(value),
+                        decoration: const InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: subText
+                            )
+                          ),
+                          focusColor: mainBlue,
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: subText,
+                            size: 28,
+                          ),
+                          label: Text(
+                            'Search location here',
+                            style: TextStyle(
+                              color: subText,
+                              fontSize: 14
+                            ),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(17.0)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                label: Text(
-                  'Search...',
-                  style: TextStyle(color: Colors.white),
-                ),
-                border: OutlineInputBorder(),
-              ),
+              ],
             ),
           ),
 
@@ -48,7 +95,6 @@ class HomeView extends GetView<HomeController> {
                 itemBuilder: (context, index){
               
                   var foundCityView = controller.foundCity;
-                  // print('PRINT DARI VIEW = ${controller.foundCity[0]}');
                     
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
@@ -64,7 +110,10 @@ class HomeView extends GetView<HomeController> {
                         Get.find<DetailInfoController>();
                       },
                       child: Card(
-                        color: lightesBlue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        color: lightGrey,
                         child: Padding(
                           padding: const EdgeInsets.all(20),
                           child: Column(
@@ -73,7 +122,7 @@ class HomeView extends GetView<HomeController> {
                               Text(
                                 foundCityView[index]['name'],
                                 style: const TextStyle(
-                                  color: Colors.black,
+                                  color: mainText,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold
                                 ),
@@ -82,7 +131,7 @@ class HomeView extends GetView<HomeController> {
                                 'See Detail Information >>',
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: mainBlue
+                                  color: subText
                                 ),
                               ),
                             ],

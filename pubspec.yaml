@@ -32,3 +32,4 @@ flutter:
         - asset: fonts/Poppins/Poppins-Thin.ttf
   assets:
     - assets/models/cities.json
+    - assets/

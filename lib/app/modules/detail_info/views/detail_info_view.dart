@@ -187,32 +187,13 @@ class DetailInfoView extends GetView<DetailInfoController> {
                       width: Get.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: lightesBlue
+                        color: Colors.white
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Icon(Icons.location_on_rounded),
-                                    const SizedBox(width: 10,),
-                                    Text(
-                                      "${cityData!['name']}",
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                            Image.asset('assets/404.jpg'),
                             const SizedBox(height: 20,),
                             const Text(
                               'Data not found! There is no latitude or longitude found!',
