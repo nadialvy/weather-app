@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather_app/app/constant/colors.dart';
@@ -21,7 +18,8 @@ class HomeView extends GetView<HomeController> {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
             child: TextField(
-              decoration: InputDecoration(
+              onChanged: (value) => controller.filterCity(value),
+              decoration: const InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: lightesBlue
@@ -34,45 +32,35 @@ class HomeView extends GetView<HomeController> {
                 ),
                 label: Text(
                   'Search...',
-                  style: TextStyle(
-                    color: Colors.white
-                  ),
+                  style: TextStyle(color: Colors.white),
                 ),
                 border: OutlineInputBorder(),
               ),
             ),
           ),
-          
-          FutureBuilder(
-            future: DefaultAssetBundle.of(context).loadString('models/cities.json'),
-            builder: ((context, snapshot) {
-              if(snapshot.connectionState == ConnectionState.waiting){
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
 
-              var allData = json.decode(snapshot.data.toString());
-              var citiesOnly = allData['data']['cities'];
-
+          GetBuilder<HomeController>(
+            builder: (value) {
               return ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: citiesOnly.length,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: controller.foundCity.length,
                 itemBuilder: (context, index){
-
+              
+                  var foundCityView = controller.foundCity;
+                  // print('PRINT DARI VIEW = ${controller.foundCity[0]}');
+                    
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                     child: InkWell(
                       onTap: () {
                         Get.toNamed(
                           Routes.DETAIL_INFO,
-                          arguments: citiesOnly[index],
+                          arguments: foundCityView[index],
                         );
-
                         final controller = Get.lazyPut<DetailInfoController>(
-                                            () => DetailInfoController(citiesOnly[index]),
-                                          );
+                          () => DetailInfoController(foundCityView[index]),
+                        );
                         Get.find<DetailInfoController>();
                       },
                       child: Card(
@@ -83,14 +71,14 @@ class HomeView extends GetView<HomeController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                '${citiesOnly[index]['name']}',
-                                style: TextStyle(
+                                foundCityView[index]['name'],
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold
                                 ),
                               ),
-                              Text(
+                              const Text(
                                 'See Detail Information >>',
                                 style: TextStyle(
                                   fontSize: 12,
@@ -105,7 +93,7 @@ class HomeView extends GetView<HomeController> {
                   );
                 }
               );
-            })
+            }
           )
         ],
       )

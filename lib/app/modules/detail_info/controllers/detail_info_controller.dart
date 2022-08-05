@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,9 +13,8 @@ class DetailInfoController extends GetxController {
     super.onInit();
   }
 
-
   Stream<Map<String, dynamic>> getWeather() async* {
-    print(cityData);
+    Map<String, dynamic> weatherMap = {};
     var dataLatitude = cityData['latitude'];
     var dataLongitude = cityData['longitude'];
 
@@ -23,11 +23,15 @@ class DetailInfoController extends GetxController {
         var resp = await http.get(
           Uri.parse('https://api.openweathermap.org/data/2.5/onecall?lat=$dataLatitude&lon=$dataLongitude&appid=43ea6baaad7663dc17637e22ee6f78f2')
         );
-        Map<String, dynamic> weatherMap = json.decode(resp.body);
+        weatherMap = json.decode(resp.body);
         yield weatherMap;
       }catch (e){
-        print(e);
+        yield weatherMap = {
+          "message" : "No latitude/longitude found."
+        };
       }
+    }else {
+      yield {"message" : "No latitude/longitude found."};
     }
   }
 }

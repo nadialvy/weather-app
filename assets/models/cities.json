@@ -1,58 +1,7 @@
 {
   "data": {
     "cities": [
-      {
-        "id": 28,
-        "region_id": 10,
-        "slug": "aceh-barat",
-        "name": "Aceh Barat",
-        "code": null,
-        "latitude": "4.4542745",
-        "longitude": "96.1526985",
-        "location": "4.4542745,96.1526985",
-        "order": 0,
-        "active": true,
-        "status": null
-      },
-      {
-        "id": 303,
-        "region_id": 10,
-        "slug": "aceh-barat-daya",
-        "name": "Aceh Barat Daya",
-        "code": null,
-        "latitude": "3.7963426",
-        "longitude": "97.0068393",
-        "location": "3.7963426,97.0068393",
-        "order": 0,
-        "active": true,
-        "status": null
-      },
-      {
-        "id": 362,
-        "region_id": 10,
-        "slug": "aceh-besar",
-        "name": "Aceh Besar",
-        "code": null,
-        "latitude": "5.4107975",
-        "longitude": "95.5197394",
-        "location": "5.4107975,95.5197394",
-        "order": 0,
-        "active": true,
-        "status": null
-      },
-      {
-        "id": 238,
-        "region_id": 10,
-        "slug": "aceh-jaya",
-        "name": "Aceh Jaya",
-        "code": null,
-        "latitude": "4.7873684",
-        "longitude": "95.6457951",
-        "location": "4.7873684,95.6457951",
-        "order": 0,
-        "active": true,
-        "status": null
-      },
+
       {
         "id": 188,
         "region_id": 10,
@@ -114,6 +63,19 @@
         "latitude": "-6.1584972",
         "longitude": "106.7470536",
         "location": "-6.1584972,106.7470536",
+        "order": 0,
+        "active": true,
+        "status": null
+      },
+      {
+        "id": 82,
+        "region_id": 1,
+        "slug": "keerom",
+        "name": "Keerom",
+        "code": null,
+        "latitude": null,
+        "longitude": null,
+        "location": null,
         "order": 0,
         "active": true,
         "status": null

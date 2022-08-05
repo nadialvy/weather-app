@@ -1,24 +1,52 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:weather_app/app/entities/cities_model.dart';
-import 'package:flutter/services.dart' as rootBundle;
+import 'package:flutter/services.dart' as root_bundle;
+import 'package:flutter/material.dart';
 
 class HomeController extends GetxController {
+  List<dynamic> allCity = [].obs;
+  List<dynamic> foundCity = [].obs;
 
-  // List<City> cities = [];
+  @override
+  void onInit() {
+    super.onInit();
+    foundCity = allCity;
+    getLocalJson();
+  }
 
-  // Future<List<City>> getAllCity() async {
+  getLocalJson() async {
+    Future<String> allDataFutureStr = root_bundle.rootBundle.loadString('models/cities.json'); //get the data
+    String allDataStr = await allDataFutureStr; // convert Future<String> to String
+    List<dynamic> dataCitiesOnly = json.decode(allDataStr)['data']['cities']; // convert String to List<dynamic>
 
-  //   final strCityData = await rootBundle.rootBundle.loadString('models/cities.json'); //tipe = string
+    for (var element in dataCitiesOnly) {
+      allCity.add(element);
+    }
 
-  //   // convert data into a list
-  //   final cityList = json.decode(strCityData)['data']['cities'] as List;
-  //   print(cityList.runtimeType);
+    foundCity = allCity;
 
-  //   cities = City.fromJsonList(cityList);    
-  //   return cities;
+    update();
+    return foundCity;
+  }
 
-  // }
+  void filterCity(String? cityName) async {
+    List<dynamic> results = [];
+
+    if(cityName == null || cityName == '' || cityName.isEmpty){
+      results = allCity;
+    }else {
+      results = allCity
+                .where((element) => element['name']
+                  .toString()
+                  .toLowerCase()
+                  .contains(cityName.toLowerCase()))
+                .toList();
+    }
+
+    foundCity = results;
+    update();
+  }
+
   
 }

@@ -33,142 +33,206 @@ class DetailInfoView extends GetView<DetailInfoController> {
             );
           }
 
-          Map<dynamic, dynamic>? dataWeather = snapshot.data!;
-          return SingleChildScrollView(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-              width: Get.width,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        onPressed: () => Get.back(),
-                        icon: const Icon(Icons.arrow_back_ios),
-                        color: Colors.white
-                      ),
-                      const Text(
-                        "Today's Weather Forecast",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+          Map<dynamic, dynamic> dataWeather = snapshot.data!;
+          if(dataWeather["message"] == null){
+            return SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                width: Get.width,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () => Get.back(),
+                          icon: const Icon(Icons.arrow_back_ios),
                           color: Colors.white
                         ),
-                      ),
-                      Container(),
-                    ],
-                  ),
-                  const SizedBox(height: 50,),
-                  Container(
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: lightesBlue
+                        const Text(
+                          "Today's Weather Forecast",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white
+                          ),
+                        ),
+                        Container(),
+                      ],
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  const Icon(Icons.location_on_rounded),
-                                  const SizedBox(width: 10,),
-                                  Text(
-                                    "${cityData!['name']}",
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold
+                    const SizedBox(height: 50,),
+                    Container(
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: lightesBlue
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(Icons.location_on_rounded),
+                                    const SizedBox(width: 10,),
+                                    Text(
+                                      "${cityData!['name']}",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.network(
+                                  "https://openweathermap.org/img/wn/${dataWeather['current']['weather'][0]['icon']}@2x.png"
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(right: 10),
+                                  child: Text(
+                                    '27°',
+                                    style: TextStyle(
+                                      fontSize: 60,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(Icons.calendar_today),
-                                  const SizedBox(width: 10,),
-                                  Text(
-                                    DateFormat.yMMMEd().format(DateTime.now()),
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold
-                                    ),
-                                  ),
-
-                                ],
-                              )
-                            ],
-                          ),
-                          const SizedBox(height: 20,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Image.network(
-                                "https://openweathermap.org/img/wn/${dataWeather['current']['weather'][0]['icon']}@2x.png"
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(right: 10),
-                                child: Text(
-                                  '27°',
-                                  style: TextStyle(
-                                    fontSize: 60,
-                                    fontWeight: FontWeight.bold,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '${dataWeather['current']['weather'][0]['main']}',
+                                  style: const TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 20,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '${dataWeather['current']['weather'][0]['main']}',
-                                style: const TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold
+                                Text(
+                                  'Humidity : ${dataWeather['current']['humidity']}',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'Humidity : ${dataWeather['current']['humidity']}',
-                                style: const TextStyle(
-                                  fontSize: 14,
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '${dataWeather['current']['weather'][0]['description']}'.toTitleCase(),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '${dataWeather['current']['weather'][0]['description']}'.toTitleCase(),
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold
+                                Text(
+                                  'Clouds : ${dataWeather['current']['clouds']}',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'Clouds : ${dataWeather['current']['clouds']}',
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 50,),
-                ],
+                    const SizedBox(height: 50,),
+                  ],
+                ),
               ),
-            ),
-          );
+            );
+          }else {
+            return SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                width: Get.width,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () => Get.back(),
+                          icon: const Icon(Icons.arrow_back_ios),
+                          color: Colors.white
+                        ),
+                        const Text(
+                          "Today's Weather Forecast",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white
+                          ),
+                        ),
+                        Container(),
+                      ],
+                    ),
+                    const SizedBox(height: 50,),
+                    Container(
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: lightesBlue
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(Icons.location_on_rounded),
+                                    const SizedBox(width: 10,),
+                                    Text(
+                                      "${cityData!['name']}",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20,),
+                            const Text(
+                              'Data not found! There is no latitude or longitude found!',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: warningRed
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+          
         }
       )
     );

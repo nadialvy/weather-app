@@ -5,3 +5,4 @@ const darkBlue = Color(0xFF1A374D);
 const lightBlue = Color(0xFF6998AB);
 const lightesBlue = Color.fromARGB(255, 197, 228, 243);
 const black = Color.fromARGB(255, 7, 16, 23);
+const warningRed = Color.fromARGB(204, 121, 21, 21);
