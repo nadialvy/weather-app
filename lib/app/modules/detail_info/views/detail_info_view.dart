@@ -229,50 +229,57 @@ class DetailInfoView extends GetView<DetailInfoController> {
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                 width: Get.width,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        IconButton(
-                          onPressed: () => Get.back(),
-                          icon: const Icon(Icons.arrow_back_ios),
-                          color: Colors.white
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                              onPressed: () => Get.back(),
+                              icon: const Icon(Icons.arrow_back_ios),
+                              color: mainText
+                            ),
+                            const Text(
+                              "Today's Weather Forecast",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: mainText,
+                                fontWeight: FontWeight.w500
+                              ),
+                            ),
+                            Container(),
+                          ],
                         ),
-                        const Text(
-                          "Today's Weather Forecast",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white
-                          ),
-                        ),
-                        Container(),
                       ],
                     ),
                     const SizedBox(height: 50,),
                     Container(
-                      width: Get.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          children: [
-                            Image.asset('assets/404.jpg'),
-                            const SizedBox(height: 20,),
-                            const Text(
-                              'Data not found! There is no latitude or longitude found!',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: warningRed
-                              ),
-                              textAlign: TextAlign.center,
+                      alignment: Alignment.center,
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/404.jpg'
+                          ),
+                          const Text(
+                            "We're sorry :(",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 141, 18, 9),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600
                             ),
-                          ],
-                        ),
+                          ),
+                          const Text(
+                            "Data not found",
+                            style: TextStyle(
+                              color: subText,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400
+                            ),
+                          ),
+                        ]
                       ),
                     ),
                   ],
