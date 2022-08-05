@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather_app/app/constant/colors.dart';
+import 'package:weather_app/app/constant/dimensions.dart';
 import 'package:weather_app/app/modules/detail_info/controllers/detail_info_controller.dart';
 import 'package:weather_app/app/routes/app_pages.dart';
 
@@ -16,7 +17,7 @@ class HomeView extends GetView<HomeController> {
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+            padding: EdgeInsets.fromLTRB(Dimensions.width20, Dimensions.width20, Dimensions.width20, Dimensions.width10),
             child: Column(
               children: [
                 Row(
@@ -26,37 +27,37 @@ class HomeView extends GetView<HomeController> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Hi Ray!',
                           style: TextStyle(
-                            fontSize: 28,
+                            fontSize: Dimensions.font28,
                             fontWeight: FontWeight.bold
                           ),
                         ),
-                        Text(
+                        const Text(
                           "Let's explore what's going on today!"
                         ),
                       ],
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(Dimensions.radius10),
                       child: Image.asset(
                         'assets/profile.jpg',
-                        height: 53,
+                        height: Dimensions.height53,
                       )
                     )
                   ],
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: Dimensions.height20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       child: TextField(
                         onChanged: (value) => controller.filterCity(value),
-                        decoration: const InputDecoration(
-                          focusedBorder: OutlineInputBorder(
+                        decoration: InputDecoration(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(
                               color: subText
                             )
@@ -65,17 +66,17 @@ class HomeView extends GetView<HomeController> {
                           prefixIcon: Icon(
                             Icons.search,
                             color: subText,
-                            size: 28,
+                            size: Dimensions.icon28,
                           ),
                           label: Text(
                             'Search location here',
                             style: TextStyle(
                               color: subText,
-                              fontSize: 14
+                              fontSize: Dimensions.font14
                             ),
                           ),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(17.0)),
+                            borderRadius: BorderRadius.all(Radius.circular(Dimensions.radius17)),
                           ),
                         ),
                       ),
@@ -95,9 +96,9 @@ class HomeView extends GetView<HomeController> {
                 itemBuilder: (context, index){
               
                   var foundCityView = controller.foundCity;
-                    
+                  
                   return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                    padding: EdgeInsets.symmetric(vertical: Dimensions.width5, horizontal: Dimensions.width20),
                     child: InkWell(
                       onTap: () {
                         Get.toNamed(
@@ -111,26 +112,26 @@ class HomeView extends GetView<HomeController> {
                       },
                       child: Card(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(Dimensions.radius20),
                         ),
                         color: lightGrey,
                         child: Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: EdgeInsets.all(Dimensions.width20),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 foundCityView[index]['name'],
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: mainText,
-                                  fontSize: 20,
+                                  fontSize: Dimensions.font20,
                                   fontWeight: FontWeight.bold
                                 ),
                               ),
-                              const Text(
+                              Text(
                                 'See Detail Information >>',
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: Dimensions.font12,
                                   color: subText
                                 ),
                               ),
