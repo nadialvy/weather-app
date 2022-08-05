@@ -8,8 +8,10 @@ const black = Color.fromARGB(255, 7, 16, 23);
 const warningRed = Color.fromARGB(204, 121, 21, 21);
 
 const lightGrey = Color.fromARGB(255, 246, 245, 246);
+const lightGrey2 = Color.fromARGB(255, 243, 241, 243);
 const mainText = Color(0xFF22354D);
 const subText = Color(0xFFAEAEB2);
 const primaryBlue = Color(0xFF102A4F);
 const mediumBlue = Color(0xFF2A4267);
+const mediumBlueAlpha = Color.fromARGB(62, 57, 83, 122);
 const lightBlue2 = Color(0xFF8CB2FB);
