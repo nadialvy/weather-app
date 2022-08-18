@@ -14,6 +14,7 @@ dependencies:
   http: ^0.13.4
   iconsax: ^0.0.8
   intl: ^0.17.0
+  velocity_x: ^3.5.1
   weather_icons: ^3.0.0
 
 dev_dependencies:

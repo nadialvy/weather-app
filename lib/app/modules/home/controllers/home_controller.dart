@@ -5,13 +5,13 @@ import 'package:flutter/services.dart' as root_bundle;
 import 'package:flutter/material.dart';
 
 class HomeController extends GetxController {
-  List<dynamic> allCity = [].obs;
-  List<dynamic> foundCity = [].obs;
+  final allCity = <Map<String, dynamic>>[].obs;
+  final foundCity = <Map<String, dynamic>>[].obs;
 
   @override
   void onInit() {
     super.onInit();
-    foundCity = allCity;
+    foundCity.value = allCity;
     getLocalJson();
   }
 
@@ -24,14 +24,14 @@ class HomeController extends GetxController {
       allCity.add(element);
     }
 
-    foundCity = allCity;
+    foundCity.value = allCity;
 
     update();
     return foundCity;
   }
 
   void filterCity(String? cityName) async {
-    List<dynamic> results = [];
+   var results = <Map<String, dynamic>>[];
 
     if(cityName == null || cityName == '' || cityName.isEmpty){
       results = allCity;
@@ -44,7 +44,8 @@ class HomeController extends GetxController {
                 .toList();
     }
 
-    foundCity = results;
+    foundCity.value = results;
+    print(foundCity);
     update();
   }
 

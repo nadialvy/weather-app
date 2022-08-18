@@ -5,8 +5,9 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class DetailInfoController extends GetxController {
-  late final Map<String, dynamic> cityData; //get data from user's click
-  DetailInfoController (this.cityData);
+  // late final Map<String, dynamic> cityData; //get data from user's click
+  // DetailInfoController (this.cityData);
+  Map<String, dynamic>? cityData = Get.arguments;
 
   @override
   void onInit() {
@@ -15,8 +16,8 @@ class DetailInfoController extends GetxController {
 
   Stream<Map<String, dynamic>> getWeather() async* {
     Map<String, dynamic> weatherMap = {};
-    var dataLatitude = cityData['latitude'];
-    var dataLongitude = cityData['longitude'];
+    var dataLatitude = cityData!['latitude'];
+    var dataLongitude = cityData!['longitude'];
 
     if(dataLatitude != "" && dataLongitude != ""){
       try{

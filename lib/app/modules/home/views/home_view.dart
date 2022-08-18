@@ -14,7 +14,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: ListView(
+      body: Column(
         children: [
           Padding(
             padding: EdgeInsets.fromLTRB(Dimensions.width20, Dimensions.width20, Dimensions.width20, Dimensions.width10),
@@ -87,64 +87,66 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
 
-          GetBuilder<HomeController>(
-            builder: (value) {
-              return ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.foundCity.length,
-                itemBuilder: (context, index){
-              
-                  var foundCityView = controller.foundCity;
-                  
-                  return Padding(
-                    padding: EdgeInsets.symmetric(vertical: Dimensions.width5, horizontal: Dimensions.width20),
-                    child: InkWell(
-                      onTap: () {
-                        Get.toNamed(
-                          Routes.DETAIL_INFO,
-                          arguments: foundCityView[index],
-                        );
-                        final controller = Get.lazyPut<DetailInfoController>(
-                          () => DetailInfoController(foundCityView[index]),
-                        );
-                        Get.find<DetailInfoController>();
-                      },
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(Dimensions.radius20),
-                        ),
-                        color: lightGrey,
-                        child: Padding(
-                          padding: EdgeInsets.all(Dimensions.width20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                foundCityView[index]['name'],
-                                style: TextStyle(
-                                  color: mainText,
-                                  fontSize: Dimensions.font20,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              Text(
-                                'See Detail Information >>',
-                                style: TextStyle(
-                                  fontSize: Dimensions.font12,
-                                  color: subText
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }
-              );
-            }
-          )
+          // GetBuilder<HomeController>(
+          //   builder: (value) {
+              Expanded(
+                child: Obx(() => ListView.builder(
+                                // shrinkWrap: true,
+                                // physics: const NeverScrollableScrollPhysics(),
+                                itemCount: controller.foundCity.length,
+                                itemBuilder: (context, index){
+                              
+                                  // var foundCityView = controller.foundCity;
+                                  
+                                  return Padding(
+                                    padding: EdgeInsets.symmetric(vertical: Dimensions.width5, horizontal: Dimensions.width20),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(
+                                          Routes.DETAIL_INFO,
+                                          arguments: controller.foundCity[index],
+                                        );
+                                        // final controller = Get.lazyPut<DetailInfoController>(
+                                        //   () => DetailInfoController(foundCityView[index]),
+                                        // );
+                                        // Get.find<DetailInfoController>();
+                                      },
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(Dimensions.radius20),
+                                        ),
+                                        color: lightGrey,
+                                        child: Padding(
+                                          padding: EdgeInsets.all(Dimensions.width20),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                controller.foundCity[index]['name'],
+                                                style: TextStyle(
+                                                  color: mainText,
+                                                  fontSize: Dimensions.font20,
+                                                  fontWeight: FontWeight.bold
+                                                ),
+                                              ),
+                                              Text(
+                                                'See Detail Information >>',
+                                                style: TextStyle(
+                                                  fontSize: Dimensions.font12,
+                                                  color: subText
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                              )),
+              )
+            // }
+          // )
         ],
       )
     );
